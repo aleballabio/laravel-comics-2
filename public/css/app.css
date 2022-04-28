@@ -260,6 +260,10 @@ main .second-section div li a span img {
   margin: 0;
 }
 
+.card a {
+  text-decoration: none;
+}
+
 .card .container-image {
   width: 100%;
 }
@@ -278,5 +282,11 @@ main .second-section div li a span img {
   color: white;
   font-size: 0.8rem;
   padding-top: 1rem;
+}
+
+.blue-block {
+  height: 4rem;
+  width: 100%;
+  background-color: rgb(2, 130, 249);
 }
 

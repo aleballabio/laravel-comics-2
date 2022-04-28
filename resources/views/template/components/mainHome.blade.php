@@ -11,7 +11,7 @@
             <div class="container-cards">
                 @foreach ($comics as $comic)
                     <div class="card">
-                        <a href="#!">
+                        <a href="/comics/{{ $comic['id'] }}">
                             <div class="container-image">
                                 <img src="{{ $comic['thumb'] }}" alt="{{ $comic['series'] }}" />
                             </div>

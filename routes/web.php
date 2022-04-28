@@ -277,3 +277,234 @@ Route::get('/news', function () {
 Route::get('/shop', function () {
     return view('shop');
 })->name('shop');
+
+Route::get('/comics/{id}', function ($id) {
+    $data = [
+        'links' => [
+            [
+                'text' => "characters",
+            ],
+
+            [
+                'text' => "comics",
+            ],
+
+            [
+                'text' => "movies",
+            ],
+
+            [
+                'text' => "tv",
+            ],
+
+            [
+                'text' => "games",
+            ],
+
+            [
+                'text' => "collectibles",
+            ],
+
+            [
+                'text' => "video",
+            ],
+
+            [
+                'text' => "fans",
+            ],
+
+            [
+                'text' => "news",
+            ],
+
+            [
+                'text' => "shop",
+            ],
+        ],
+        'navigationList' => [
+            [
+                'category' => "DC Comics",
+                'links' => [
+                    [
+                        'text' => "Characters",
+                    ],
+
+                    [
+                        'text' => "Comics",
+                    ],
+
+                    [
+                        'text' => "Movies",
+                    ],
+
+                    [
+                        'text' => "TV",
+                    ],
+
+                    [
+                        'text' => "Games",
+                    ],
+
+                    [
+                        'text' => "Videos",
+                    ],
+
+                    [
+                        'text' => "News",
+                    ],
+                ],
+            ],
+
+            [
+                'category' => "Shop",
+                'links' => [
+                    [
+                        'text' => "Shop DC",
+                    ],
+
+                    [
+                        'text' => "Shop DC Collectibles",
+                    ],
+                ],
+            ],
+
+            [
+                'category' => "DC",
+                'links' => [
+                    [
+                        'text' => "Terms Of Use",
+                    ],
+
+                    [
+                        'text' => "Privacy policy (New)",
+                    ],
+
+                    [
+                        'text' => "Ad Choices",
+                    ],
+
+                    [
+                        'text' => "Advertising",
+                    ],
+
+                    [
+                        'text' => "Jobs",
+                    ],
+
+                    [
+                        'text' => "Subscriptions",
+                    ],
+
+                    [
+                        'text' => "Talent Workshops",
+                    ],
+
+                    [
+                        'text' => "CPSC Certificates",
+                    ],
+
+                    [
+                        'text' => "Ratings",
+                    ],
+
+                    [
+                        'text' => "Shop Help",
+                    ],
+
+                    [
+                        'text' => "Contact Us",
+                    ],
+                ],
+            ],
+
+            [
+                'category' => "Sites",
+                'links' => [
+                    [
+                        'text' => "DC",
+                    ],
+
+                    [
+                        'text' => "MAD Magazine",
+                    ],
+
+                    [
+                        'text' => "DC  Kids",
+                    ],
+
+                    [
+                        'text' => "DC Universe",
+                    ],
+
+                    [
+                        'text' => "DC Power Visa",
+                    ],
+                ],
+            ],
+        ],
+
+        'socials' => [
+            [
+                'nome' => "Facebook",
+                'img' => asset('img/footer-facebook.png'),
+            ],
+
+            [
+                'nome' => "Twitter",
+                'img' => asset('img/footer-twitter.png'),
+            ],
+
+            [
+                'nome' => "Youtube",
+                'img' => asset('img/footer-youtube.png'),
+            ],
+
+            [
+                'nome' => "Pinterest",
+                'img' => asset('img/footer-pinterest.png'),
+            ],
+
+            [
+                'nome' => "Periscope",
+                'img' => asset('img/footer-periscope.png'),
+            ],
+        ],
+
+        'sections' => [
+            [
+                'text' => "Digital comics",
+                'img' =>  asset('img/buy-comics-digital-comics.png'),
+            ],
+
+            [
+                'text' => "dc merchandise",
+                'img' =>   asset('img/buy-comics-merchandise.png'),
+            ],
+
+            [
+                'text' => "subscription",
+                'img' =>   asset('img/buy-comics-subscriptions.png'),
+            ],
+
+            [
+                'text' => "comic shop locator",
+                'img' =>   asset('img/buy-comics-shop-locator.png'),
+            ],
+
+            [
+                'text' => "dc power visa",
+                'img' =>   asset('img/buy-dc-power-visa.svg'),
+            ],
+        ],
+    ];
+
+    $comics = collect(config('comics'));
+    $selectedComics = $comics->where('id', $id);
+    if ($selectedComics->count() < 1) {
+        abort(404);
+    };
+
+    $selectedComic = $selectedComics->toArray();
+    array_push($data, $selectedComic);
+    return view('comic', $data);
+})->name('comic');
